@@ -1,0 +1,24 @@
+# Ignore Node.js modules
+node_modules/
+
+# Ignore build output
+.next/
+out/
+
+# Ignore environment variables file (if used)
+.env
+
+# Ignore log files
+logs/
+*.log
+
+# Ignore other build files
+build/
+.cache/
+
+# Ignore VS Code settings
+.vscode/
+
+# Ignore other development tools' settings and files
+.idea/
+.DS_Store
