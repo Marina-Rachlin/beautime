@@ -1,14 +1,9 @@
 import React from "react";
 import WishlistItem from "./WishlistItem";
-import { useSelector, useDispatch } from "react-redux";
-import { removeItem } from "../../../redux/features/wishlist/wishlistSlice";
+import { useSelector } from "react-redux";
 
-const Wishlist = () => { //TODO: to fetch wishlist from server( for now on mounting it comes from client state)
+const Wishlist = () => {
   const wishlist = useSelector((state) => state.wishlist.wishlist);
-  console.log("wishlist =>", wishlist);
-  const dispatch = useDispatch();
-
-  const handleRemoveFromWishlist = (product) => dispatch(removeItem(product));
 
   return (
     <>
@@ -28,16 +23,21 @@ const Wishlist = () => { //TODO: to fetch wishlist from server( for now on mount
                     </tr>
                   </thead>
                   <tbody>
-                    {wishlist
-                      ?.slice() // Create a copy of the wishlist array
-                      .reverse() // Reverse the copied array
-                      .map((item) => (
-                        <WishlistItem
-                          key={item._id}
-                          product={item}
-                          handleDelete={handleRemoveFromWishlist}
-                        />
-                      ))}
+                    {
+                      wishlist && wishlist.length > 0 ? (
+                        wishlist
+                          .slice() // Create a copy of the wishlist array
+                          .reverse() // Reverse the copied array
+                          .map((item) => (
+                            <WishlistItem
+                              key={item._id}
+                              product={item}
+                            />
+                          ))
+                      ) : (
+                        <p>Your wishlist is empty.</p>
+                      ) 
+                    }
                   </tbody>
                 </table>
               </div>

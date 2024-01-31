@@ -367,7 +367,7 @@ const ProductsTable = () => {
   }, [])
 
   useEffect(() => {
-    // console.log(`fetching ... with: isLoading: ${isLoading}, data: ${data} , brand: ${brand}, category: ${category}, status: ${status}, pm: ${paginationModel}, rowcs: ${rowCountState}, error: ${error}`  )
+    console.log(`fetching ... with: isLoading: ${isLoading}, data: ${data} , brand: ${brand}, category: ${category}, status: ${status}, pm: ${paginationModel}, rowcs: ${rowCountState}, error: ${error}`  )
 
     if (isLoading) {
       console.log('isLoading....')
@@ -375,8 +375,6 @@ const ProductsTable = () => {
     }
 
     if (data) {
-      console.log('data received!')
-      console.log(data);
       const newRows = data.products.map((item) => ({
         id: item._id, // used as a key
         name: item.name,
