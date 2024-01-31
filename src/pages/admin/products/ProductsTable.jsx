@@ -270,7 +270,7 @@ const columns = [
   //     );
   //   },
   // },
-  { field: " ", headerName: "Purchased", flex: 0.15, minWidth: 80 },
+  // { field: " ", headerName: "Purchased", flex: 0.15, minWidth: 80 },
   {
     flex: 0.1,
     sortable: false,
