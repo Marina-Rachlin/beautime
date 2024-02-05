@@ -263,7 +263,7 @@ const Products = () => {
                       ? "-md-4"
                       : activeColumn === "column-2"
                       ? "-sm-6"
-                      : "col-6"
+                      : "-6"
                   }`}
                 >
                   <ProductCard key={product.id} product={product} />
