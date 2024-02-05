@@ -14,7 +14,7 @@ function Category() {
           </div>
           <div className="row gy-5 mb-60">
             {categoryCardData.map((category) => (
-              <div key={category.id} className="col-lg-3 col-sm-6">
+              <div key={category.id} className="col-lg-3 col-sm-6 col-6">
                 <div className="category-card">
                   <div className="category-card-img hover-img">
                     <Link legacyBehavior href="/shop">

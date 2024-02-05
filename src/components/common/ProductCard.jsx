@@ -64,7 +64,7 @@ const ProductCard = ({ product }) => {
 
   
   return (
-    <div className="col-xl-3 col-lg-4 col-sm-6">
+    <div className="col-xl-3 col-lg-4 col-sm-6 col-6">
       <div className="product-card2">
         <div className="batch">
           {product.isHot && <span>Hot</span>}
