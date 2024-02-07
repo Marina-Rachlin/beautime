@@ -19,7 +19,7 @@ function Category() {
                   <div className="category-card-img hover-img">
                     <Link legacyBehavior href="/shop">
                       <a>
-                        <img src={category.img} alt="" />
+                        <img src={category.img} alt="" loading="lazy"/>
                       </a>
                     </Link>
                   </div>
