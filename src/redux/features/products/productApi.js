@@ -18,25 +18,32 @@ export const productApi = apiSlice.injectEndpoints({
       }),
     }),
     // getAllProductsShop: builder.query({
-    //   query: ({page}) => ({
-    //     url: `get-products-shop?page=${page}`,
+    //   query: ({ page, pageSize, category, brand, sort }) => ({
+    //     url: `get-products?category=${category}&brand=${brand}&stock=${sort}&page=${page}&pageSize=${pageSize}`,
     //     method: "GET",
     //     credentials: "include",
     //   }),
     // }),
     getAllProductsShop: builder.query({
-      query: ({ page, sort, pageSize, brand }) => {
-        // Construct the query URL based on the presence of the sort parameter
-        let url = `get-products-shop?page=${page}&pageSize=${pageSize}`;
-        if (sort) {
-          url += `&sort=${sort}`;
+      query: ({ page, pageSize, category, brand, sort, price }) => {
+        let queryParams = [];
+        
+        if (category) queryParams.push(`category=${category}`);
+        if (brand) queryParams.push(`brand=${brand}`);
+        if (sort) queryParams.push(`sort=${sort}`);
+        if (page) queryParams.push(`page=${page}`);
+        if (pageSize) queryParams.push(`pageSize=${pageSize}`);
+        if (price) {
+          // Assuming price is an array with two values [min, max]
+          queryParams.push(`price=${price[0]}-${price[1]}`);
         }
-        if (brand) {
-          url += `&brand=${brand}`;
-        }
+        
+        const queryString = queryParams.join('&');
+    
         return {
-          url,
+          url: `get-products-shop?${queryString}`,
           method: "GET",
+          credentials: "include",
         };
       },
     }),
@@ -44,7 +51,13 @@ export const productApi = apiSlice.injectEndpoints({
       query: () => ({
         url: "get-brands",
         method: "GET",
-        // credentials: "include",
+      }),
+    }),
+
+    getCategories: builder.query({
+      query: () => ({
+        url: "get-categories",
+        method: "GET",
       }),
     }),
     
@@ -87,5 +100,6 @@ export const {
   useGetProductDetailsQuery,
   useAddReviewMutation,
   useAddReplyInReviewMutation,
-  useGetBrandsQuery
+  useGetBrandsQuery,
+  useGetCategoriesQuery
 } = productApi;

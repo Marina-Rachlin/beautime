@@ -18,7 +18,7 @@ const FeatureProduct = ({ props }) => {
       return;
     }
     else if(data){
-      console.log('here :',data)
+      console.log(data)
       const productsData = data.products.map(((item) => ({
         _id: item._id,
         name: item.name,

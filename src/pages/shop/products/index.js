@@ -8,6 +8,7 @@ import CustomToolbar from "./CustomToolbar";
 import Sidebar from "./Sidebar";
 import Pagination from "./Pagination";
 import { useGetAllProductsShopQuery } from "../../../redux/features/products/productApi";
+import Script from 'next/script'
 
 function valuetext(value) {
   return `${value}°C`;
@@ -31,9 +32,8 @@ const Products = () => {
     e.stopPropagation();
     toggleSidebar();
   };
-  console.log('here')
 
-  const [value, setValue] = useState([20, 37]);
+  const [value, setValue] = useState([0, 100]);
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -42,11 +42,12 @@ const Products = () => {
   const [totalPages, setTotalPages] = useState(1);
   const [sort, setSort] = useState('');
   const [brand, setBrand] = useState('');
-  const {isLoading, data, error} = useGetAllProductsShopQuery({page, sort, brand});
+  const [category, setCategory] = useState('');
+  const [price, setPrice] = useState([0, 10000]);
+  const pageSize = 20;
+  const {isLoading, data, error} = useGetAllProductsShopQuery({page, pageSize, sort, brand, category, price});
   const [products, setProducts] = useState([]);
-
-  console.log(brand)
-
+  const [topRated, setTopRated] = useState([]);
 
   useEffect(() => {
     const handleOutsideClick = (e) => {
@@ -95,12 +96,30 @@ const Products = () => {
         isHot: item.isHot,
         discount: item.discount
       })))
+      const topRatedProducts = data.topRated.map(((item) => ({
+        _id: item._id,
+        name: item.name,
+        category: item.category,
+        brand: item.brand,
+        price: item.price,
+        discountPrice: item.discountPrice,
+        images: item.images,
+        stock: item.stock,
+        ratings: item.ratings,
+        commentsCount: item.commentsCount,
+        purchased: item.purchased,
+        isNew: item.isNew,
+        isHot: item.isHot,
+        discount: item.discount
+      })))
+      console.log(topRatedProducts)
+      setTopRated(topRatedProducts);
       setProducts(fetchedProducts);
       setTotalPages(data.totalPages);
     } else{
       console.log(error)
     }
-  },[isLoading, data, page, sort, brand])
+  },[isLoading, data, page, sort, brand, category, price])
 
   const toggleSidebar = () => {
     setIsOpenSidebar(!isOpenSidebar);
@@ -129,6 +148,16 @@ const Products = () => {
 
   return (
     <>
+     <Script async src="https://www.googletagmanager.com/gtag/js?id=G-81GLR4VQK9"></Script>
+      <Script>
+        {
+          ` window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+        
+          gtag('config', 'G-81GLR4VQK9');`
+        }
+      </Script>
       <Sidebar
         value={value}
         handleChange={handleChange}
@@ -137,6 +166,11 @@ const Products = () => {
         sidebarRef={sidebarRef}
         setPage={setPage}
         setBrand={setBrand}
+        brand={brand}
+        category={category}
+        setCategory={setCategory}
+        setPrice={setPrice}
+        topRated={topRated}
       />
 
       <div className="full-width-section mt-110 mb-110">

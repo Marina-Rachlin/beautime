@@ -6,8 +6,9 @@ import TopCardBlock from './dashboard/TopCardBlock';
 import Chart from './dashboard/Chart';
 import OutOfStockProducts from './dashboard/OutOfStockProducts';
 import LineChartDiagram from './analytics/orders/LineChartDiagram';
+import Script from 'next/script';
 
-const Admin = () => {
+const Admin = ({children}) => {
 
 
   const analyticsData = [
@@ -63,6 +64,16 @@ const Admin = () => {
 
   return (
     <>
+     <Script async src="https://www.googletagmanager.com/gtag/js?id=G-81GLR4VQK9"></Script>
+      <Script>
+        {
+          ` window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+        
+          gtag('config', 'G-81GLR4VQK9');`
+        }
+      </Script>
     <AdminLayout>
      <div className="admin-section container user-dashboard">
         <div className="dashboard-outer">
@@ -72,6 +83,7 @@ const Admin = () => {
 
           <div className="row">
             <TopCardBlock />
+            {children}
           </div>
 
           <div className="row">
@@ -80,7 +92,7 @@ const Admin = () => {
                 <Chart />
               </div>
             </div>
-            {/* End .col */}
+       
 
             <div className="col-xl-5 col-lg-12">
               <div className="notification-widget ls-widget">
@@ -106,7 +118,6 @@ const Admin = () => {
             </div>
            
           </div>
-          {/* End .row profile and notificatins */}
         </div>
       </div>
       

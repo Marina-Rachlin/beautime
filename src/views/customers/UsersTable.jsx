@@ -251,11 +251,12 @@ const CustomToolbar = props => {
 };
 
 const UsersTable = () => {
+ 
   // ** State
   const [value, setValue] = useState("");
   const [paginationModel, setPaginationModel] = useState({ page: 0, pageSize: 25 });
   const [rowCountState, setRowCountState] = useState(0);
-  const { isLoading, data, error, refetch } = useGetAllUsersQuery({});
+  const { isLoading, data, error, refetch } = useGetAllUsersQuery();
   const [rows, setRows] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -266,11 +267,11 @@ const UsersTable = () => {
   useEffect(() => {
     
     if (isLoading) {
-      console.log('isLoading....')
-      return; // Skip the rest of the code if still loading
+      return;
     }
 
     if (data) {
+      console.log(data.users)
       const newRows = data.users.map((item) => ({
         id: item._id, // used as a key
         name: item.name,
@@ -286,8 +287,7 @@ const UsersTable = () => {
       setLoading(false)
     } else {
       console.log(error);
-      console.log('Error. trying to refetch...')
-      refetch()
+      setLoading(false)
     }
   }, [isLoading, data, error, paginationModel, value]);
 

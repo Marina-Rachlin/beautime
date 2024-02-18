@@ -14,7 +14,6 @@ import { useAddToWishlistMutation, useDeleteFromWishlistMutation } from '../../r
 
 
 const ProductCard = ({ product }) => {
-  console.log(product)
 
   const wishlist = useSelector((state) => state.wishlist.wishlist);
   const dispatch = useDispatch();
@@ -120,7 +119,13 @@ const ProductCard = ({ product }) => {
             </Link>
           </h6>
           <span>
-            ${product.price} {" "} <del>${product.originalPrice}</del>
+            {product?.discountPrice !== null ? (
+            <>
+              ${product?.discountPrice} <del>${product?.price}</del>
+            </>
+          ) : (
+            `$${product?.price}`
+          )}
           </span>
           <div className="rating">
   {product?.ratings > 0 ? (
