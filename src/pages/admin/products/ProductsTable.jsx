@@ -29,11 +29,11 @@ import {
 // ** Vars
 const productCategory = {
   Makeup: { icon: "mdi:lipstick", color: "#D92F25"},
-  Skincare: { icon: "mdi:face-man-shimmer-outline", color: "#56c900" },
-  Hair: { icon: "mdi:hair-dryer-outline", color: "#f9aa00" },
-  Body: { icon: "mdi:shower-head", color: "#15b0fe" },
+  'Skin Care': { icon: "mdi:face-man-shimmer-outline", color: "#56c900" },
+  'Hair Care': { icon: "mdi:hair-dryer-outline", color: "#f9aa00" },
+  'Bath & Body': { icon: "mdi:shower-head", color: "#15b0fe" },
   Accessories: { icon: "mdi:brush", color: "#9262e6 " },
-  Kids: { icon: "mdi:account-outline", color: "rgb(255, 205, 78)" }
+  'Kids & Baby': { icon: "mdi:account-outline", color: "rgb(255, 205, 78)" }
 };
 
 // ** renders product image
@@ -124,149 +124,6 @@ const RowOptions = ({ id, deleteProduct, isSuccess, refetch }) => {
     </>
   );
 };
-
-// //** columns
-// const columns = [
-//   {
-//     field: "name",
-//     headerName: "Product",
-//     flex: 0.5,
-//     minWidth: 200,
-//     renderCell: ({ row }) => {
-//       const { name, brand } = row;
-//       return (
-//         <Box sx={{ display: "flex", alignItems: "center" }}>
-//           {renderProduct(row)}
-//           <Box
-//             sx={{
-//               display: "flex",
-//               alignItems: "flex-start",
-//               flexDirection: "column",
-//             }}
-//           >
-//             <Typography
-//               variant="body1"
-//               style={{
-//                 color: "#2b3445",
-//                 fontWeight: "400",
-//                 lineHeight: "1.75",
-//                 textTransform: "capitalize",
-//               }}
-//             >
-//               <Link href="#" color="inherit">
-//                 {" "}
-//                 {name}{" "}
-//               </Link>
-//             </Typography>
-//             <Typography
-//               noWrap
-//               variant="caption"
-//               color={"#7D879C"}
-//               fontWeight={300}
-//             >
-//               {brand}
-//             </Typography>
-//           </Box>
-//         </Box>
-//       );
-//     },
-//   },
-//   {
-//     field: "category",
-//     headerName: "Category",
-//     flex: 0.3,
-//     minWidth: 150,
-//     renderCell: ({ row }) => {
-//       return (
-//         <Box
-//           sx={{
-//             display: "flex",
-//             alignItems: "center",
-//             "& svg": { mr: 1, color: productCategory[row.category].color },
-//           }}
-//         >
-//           <Icon
-//             icon={productCategory[row.category].icon}
-//             style={{ fontSize: "20px" }}
-//           />
-//           <Typography
-//             noWrap
-//             variant="body1"
-//             style={{
-//               color: "#2b3445",
-//               fontWeight: "400",
-//               lineHeight: "1.75",
-//               textTransform: "capitalize",
-//             }}
-//           >
-//             {row.category}
-//           </Typography>
-//         </Box>
-//       );
-//     },
-//   },
-//   {
-//     field: "stock",
-//     headerName: "Stock",
-//     flex: 0.2,
-//     minWidth: 100,
-//     renderCell: ({ row }) => {
-//       const cellStyles =
-//         row.stock > 0
-//           ? { color: "#2b3445" }
-//           : { color: "#d92f25", fontSize: "14px" };
-
-//       return (
-//         <Typography noWrap variant="body1" style={cellStyles}>
-//           {row.stock > 0 ? row.stock : "Out of Stock"}
-//         </Typography>
-//       );
-//     },
-//   },
-//   {
-//     field: "price",
-//     headerName: "Price",
-//     flex: 0.2,
-//     minWidth: 70,
-//     renderCell: ({ row }) => {
-//       return (
-//         <Typography
-//           noWrap
-//           variant="body1"
-//           style={{ color: "#2b3445", fontWeight: "400", lineHeight: "1.75" }}
-//         >
-//           ${row.price}
-//         </Typography>
-//       );
-//     },
-//   },
-//   {
-//     field: "discountPrice",
-//     headerName: "Discount",
-//     flex: 0.15,
-//     renderCell: ({ row }) => {
-//       if (row.discountPrice) {
-//         return (
-//           <Typography
-//             noWrap
-//             variant="body1"
-//             style={{ color: "#2b3445", fontWeight: "400", lineHeight: "1.75" }}
-//           >
-//             ${row.discountPrice}
-//           </Typography>
-//         );
-//       }
-//       return null;
-//     },
-//   },
-//   {
-//     flex: 0.1,
-//     sortable: false,
-//     field: "actions",
-//     headerName: "Actions",
-//     renderCell: ({ row }) => <RowOptions id={row.id} />,
-//   },
-// ];
 
 //** Grid custom toolbar
 const CustomToolbar = props => {
