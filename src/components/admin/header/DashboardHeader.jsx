@@ -13,7 +13,7 @@ import {
   useUpdateNotificationStatusMutation,
 } from "../../../redux/features/notifications/notificationsApi";
 import { format } from "timeago.js";
-import Notifications from "./NOtifications";
+// import Notifications from "./Notifications";
 
 const DashboardHeader = ({ user }) => {
   // const { user } = useSelector((state) => state.auth);
