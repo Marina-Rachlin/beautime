@@ -29,7 +29,7 @@ export default function Document() {
           href="https://fonts.googleapis.com/css2?family=Shrikhand&display=swap"
           rel="stylesheet"
         ></link>
-         <Script async src="https://www.googletagmanager.com/gtag/js?id=G-81GLR4VQK9"></Script>
+         {/* <Script async src="https://www.googletagmanager.com/gtag/js?id=G-81GLR4VQK9"></Script> */}
       {/* <Script>
         {
           ` window.dataLayer = window.dataLayer || [];
@@ -40,6 +40,7 @@ export default function Document() {
         }
       </Script> */}
       </Head>
+      <Script async src="https://www.googletagmanager.com/gtag/js?id=G-81GLR4VQK9"></Script>
       <Script>
         {
           ` window.dataLayer = window.dataLayer || [];
