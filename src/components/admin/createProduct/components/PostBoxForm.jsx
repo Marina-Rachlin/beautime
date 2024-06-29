@@ -30,7 +30,7 @@ const PostBoxForm = () => {
       .required("Brand is required!"),
     category: Yup.string()
       .oneOf(
-        ["Body", "Hair", "Skin", "Kids", "Makeup"],
+        ["Bath & Body", "Hair Care", "Skin Care", "Kids & Baby", "Makeup", "Accessories"],
         "Category field must have at least 1 item"
       )
       .required("Category field is required!"),
@@ -43,8 +43,11 @@ const PostBoxForm = () => {
       .typeError("Price must be a valid number")
       .positive("Enter a valid positive price"),
     discountPrice: Yup.number()
+    .transform((value, originalValue) => originalValue === '' ? null : value)
       .typeError("Discount price must be a valid number")
-      .positive("Enter a valid positive price"),
+      .positive("Enter a valid positive price")
+      .nullable()
+      .notRequired()
   });
 
   const initialValues = {
@@ -298,11 +301,12 @@ const PostBoxForm = () => {
                   }`}
                 >
                   <option></option>
-                  <option>Body</option>
-                  <option>Hair</option>
-                  <option>Skincare</option>
-                  <option>Kids</option>
+                  <option>Bath & Body</option>
+                  <option>Hair Care</option>
+                  <option>Skin Care</option>
+                  <option>Kids & Baby</option>
                   <option>Makeup</option>
+                  <option>Accessories</option>
                 </select>
                 {errors.category && (
                   <div className="error">{errors.category.message}</div>

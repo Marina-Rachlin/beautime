@@ -28,11 +28,11 @@ import {
 
 // ** Vars
 const productCategory = {
-  Makeup: { icon: "mdi:lipstick", color: "#D92F25"},
+  'Makeup': { icon: "mdi:lipstick", color: "#D92F25"},
   'Skin Care': { icon: "mdi:face-man-shimmer-outline", color: "#56c900" },
   'Hair Care': { icon: "mdi:hair-dryer-outline", color: "#f9aa00" },
   'Bath & Body': { icon: "mdi:shower-head", color: "#15b0fe" },
-  Accessories: { icon: "mdi:brush", color: "#9262e6 " },
+  'Accessories': { icon: "mdi:brush", color: "#9262e6 " },
   'Kids & Baby': { icon: "mdi:account-outline", color: "rgb(255, 205, 78)" }
 };
 
@@ -174,7 +174,7 @@ const ProductsTable = () => {
   const [rowCountState, setRowCountState] = useState(0);
   const { isLoading, data, error, refetch} = useGetAllProductsQuery({
     brand,
-    category,
+    category: encodeURIComponent(category),
     stock: status,
     value,
     page,
@@ -420,11 +420,13 @@ const columns = [
                 inputProps={{ placeholder: "Select Category" }}
               >
                 <MenuItem value="">Select Category</MenuItem>
-                <MenuItem value="Body">Body</MenuItem>
-                <MenuItem value="Hair">Hair</MenuItem>
-                <MenuItem value="Skincare">Skincare</MenuItem>
-                <MenuItem value="Kids">Kids</MenuItem>
+                {/* <MenuItem value="Bath & Body">Body</MenuItem> */}
+                <MenuItem value="Bath &amp; Body">Body</MenuItem>
+                <MenuItem value="Hair Care">Hair</MenuItem>
+                <MenuItem value="Skin Care">Skincare</MenuItem>
+                <MenuItem value="Kids & Baby">Kids & Baby</MenuItem>
                 <MenuItem value="Makeup">Makeup</MenuItem>
+                <MenuItem value="Accessories">Accessories</MenuItem>
               </Select>
             </FormControl>
           </Grid>
